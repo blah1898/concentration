@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func touchCard(_ sender: UIButton) {
         if let index = cardButtons.index(of: sender) {
             game.selectCard(at: index)
@@ -54,15 +53,30 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"]
+    let emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"]
+    lazy var currentEmojiChoices = emojiChoices
     	
     var selectedEmoji = [Int: String]()
+    
+    
+    @IBAction func touchNewGame() {
+        // Reset all emoji choices
+        currentEmojiChoices = emojiChoices
+        // Reset selected emoji
+        selectedEmoji = [Int: String]()
+        // Reset the game
+        game.reset()
+        // Reset the counter
+        flipCount = 0
+        // Update view
+        updateViewFromModel()
+    }
     
     func emoji(for card: Card) -> String {
 
         if selectedEmoji[card.identifier] == nil, emojiChoices.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count - 1)))
-            selectedEmoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+            let randomIndex = Int(arc4random_uniform(UInt32(currentEmojiChoices.count - 1)))
+            selectedEmoji[card.identifier] = currentEmojiChoices.remove(at: randomIndex)
         }
         
         return selectedEmoji[card.identifier] ?? "?"

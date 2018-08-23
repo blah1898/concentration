@@ -40,6 +40,15 @@ class Concentration
         }
     }
     
+    func reset() {
+        // Unmatch all cards and place them face down
+        for index in cards.indices {
+            cards[index].isFaceUp = false
+            cards[index].isMatched = false
+        }
+        // TODO: shuffle the cards again
+    }
+    
     init (numberOfPairsOfCards pairCount: Int) {
         for _ in 1...pairCount {
             // Generate a pair of cards and append it to the cards array.
