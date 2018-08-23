@@ -54,7 +54,8 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"]
+    	
     var selectedEmoji = [Int: String]()
     
     func emoji(for card: Card) -> String {
