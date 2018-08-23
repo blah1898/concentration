@@ -86,6 +86,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <connections>
+                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="udL-dv-7QM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADs-jQ-j3w">
                                 <rect key="frame" x="192" y="296" width="80" height="118"/>
@@ -239,6 +242,7 @@
                         <outletCollection property="cardButtons" destination="xMN-eT-ZVT" collectionClass="NSMutableArray" id="M93-XQ-c8t"/>
                         <outletCollection property="cardButtons" destination="bjL-kU-bRV" collectionClass="NSMutableArray" id="OJQ-zF-SKV"/>
                         <outletCollection property="cardButtons" destination="0iL-rF-fMh" collectionClass="NSMutableArray" id="9B2-Wa-aG2"/>
+                        <outletCollection property="cardButtons" destination="IQD-LP-yHh" collectionClass="NSMutableArray" id="7SR-3y-yrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
