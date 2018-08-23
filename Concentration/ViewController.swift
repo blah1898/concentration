@@ -14,7 +14,7 @@ class ViewController: UIViewController {
      |--------------------------------------------------------------------------------------------------
      | TODO
      |--------------------------------------------------------------------------------------------------
-     | 1. Add more cards
+     | 1. Add more cards ✔
      | 2. Add a "New Game" button, that will restart the game
      | 3. Shuffle the cards in the in Concentration's init()
      | 4. Add themes to the game. At least 6 themes. One must be chosen at random on startup.
