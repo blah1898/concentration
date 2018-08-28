@@ -40,13 +40,37 @@ class Concentration
         }
     }
     
+    /**
+    Shuffle the elements of an array using Fisher-Yates
+     
+    - parameters:
+      - array : The array to shuffle
+     
+    - returns: The new shuffled array
+     */
+    static func shuffle<T>(array a: Array<T>) -> Array<T> {
+        // Copy the array in a mutable form
+        var shuffled = a;
+        
+        // The algorithm we're running will swap the current element with one of the
+        // elements that go after it (Fisher-Yates Algorithm)
+        
+        // We go up to shuffled.count - 2, because if we go up to shuffled.count - 1,
+        // the last element will be swapped with itself, an unnecesary step.
+        for i in 1..<(shuffled.count - 1) {
+            let swapPosition = Int(arc4random_uniform(UInt32(shuffled.count - i - 1))) + i
+            shuffled.swapAt(i, swapPosition)
+        }
+        
+        return shuffled
+    }
+    
     func reset() {
         // Unmatch all cards and place them face down
         for index in cards.indices {
             cards[index].isFaceUp = false
             cards[index].isMatched = false
         }
-        // TODO: shuffle the cards again
     }
     
     init (numberOfPairsOfCards pairCount: Int) {
