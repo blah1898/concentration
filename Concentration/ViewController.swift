@@ -53,15 +53,26 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    let emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"]
-    lazy var currentEmojiChoices = emojiChoices
+    let emojiThemes = [
+        ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"],
+        ["A", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"],
+        ["🦇", "B", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"],
+        ["🦇", "😱", "C", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"],
+        ["🦇", "😱", "🙀", "D", "🎃", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"],
+        ["🦇", "😱", "🙀", "😈", "E", "👻", "🍭", "🍬", "🍎", "🧟‍♂️"]
+    ]
+    lazy var currentEmojiChoices : [String] = {
+        let randomTheme = Int(arc4random_uniform(UInt32(self.emojiThemes.count - 1)))
+        return self.emojiThemes[randomTheme]
+    }()
     	
     var selectedEmoji = [Int: String]()
     
     
     @IBAction func touchNewGame() {
+        let randomTheme = Int(arc4random_uniform(UInt32(self.emojiThemes.count - 1)))
         // Reset all emoji choices
-        currentEmojiChoices = emojiChoices
+        currentEmojiChoices = emojiThemes[randomTheme]
         // Reset selected emoji
         selectedEmoji = [Int: String]()
         // Reset the game
@@ -74,7 +85,7 @@ class ViewController: UIViewController {
     
     func emoji(for card: Card) -> String {
 
-        if selectedEmoji[card.identifier] == nil, emojiChoices.count > 0 {
+        if selectedEmoji[card.identifier] == nil, currentEmojiChoices.count > 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(currentEmojiChoices.count - 1)))
             selectedEmoji[card.identifier] = currentEmojiChoices.remove(at: randomIndex)
         }
