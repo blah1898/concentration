@@ -71,6 +71,7 @@ class Concentration
             cards[index].isFaceUp = false
             cards[index].isMatched = false
         }
+        cards = Concentration.shuffle(array: cards)
     }
     
     init (numberOfPairsOfCards pairCount: Int) {
@@ -81,6 +82,7 @@ class Concentration
             let card = Card()
             cards += [card, card]
         }
+        cards = Concentration.shuffle(array: cards)
     }
 }
     
