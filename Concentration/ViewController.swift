@@ -17,8 +17,8 @@ class ViewController: UIViewController {
      | 1. Add more cards ✔
      | 2. Add a "New Game" button, that will restart the game ✔
      | 3. Shuffle the cards in the in Concentration's init() ✔
-     | 4. Add themes to the game. At least 6 themes. One must be chosen at random on startup.
-     | 5. Make adding a theme as simple as adding a single line of code
+     | 4. Add themes to the game. At least 6 themes. One must be chosen at random on startup. ✔
+     | 5. Make adding a theme as simple as adding a single line of code ✔
      | 6. Add a score counting label. 2 points per match, -1 point per mismatch if flipped previously.
      | 7. Move the amount of card flips to the Model (to properly follow MVC)
      | 8. Ensure the UI looks good in an iPhone X in portrait
