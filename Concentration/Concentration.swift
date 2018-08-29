@@ -12,6 +12,7 @@ class Concentration
 {
     var cards = [Card]()
     var alreadyFlippedIndices = [Int]()
+    var score = 0;
     var indexOfOneAndOnlyFaceUpCard : Int? = nil
     
     /**
@@ -19,21 +20,15 @@ class Concentration
 
      - parameters:
         - at : The index of the card to flip
-     
-     - returns : A tuple containing the following values:
-        - True if the card was already flipped AND is not the currently flipped one, false otherwise
-        - True if a match was made, false otherwise
     **/
-    func selectCard(at index: Int) -> (Bool, Bool) {
-        var alreadyFlipped = false
-        var match = false
+    func selectCard(at index: Int) {
         // Only do stuff on unmatched cards
         if !cards[index].isMatched {
             // Check if we already have one face up card
-            if let matchedIndex = indexOfOneAndOnlyFaceUpCard {
+            if let matchedIndex = indexOfOneAndOnlyFaceUpCard, matchedIndex != index {
                 // Check if we've already flipped this card
                 if alreadyFlippedIndices.contains(index) {
-                    alreadyFlipped = true;
+                    score -= 1
                 } else {
                     alreadyFlippedIndices += [index]
                 }
@@ -41,7 +36,7 @@ class Concentration
                 if cards[matchedIndex].identifier == cards[index].identifier {
                     cards[matchedIndex].isMatched = true
                     cards[index].isMatched = true
-                    match = true
+                    score += 2
                 }
                 // Turn the selected card faceup. Since we don't have just one card up,
                 // set the index of the only face card up to nil
@@ -50,7 +45,7 @@ class Concentration
             } else if indexOfOneAndOnlyFaceUpCard != index {
                 // Check if we've already flipped this card
                 if alreadyFlippedIndices.contains(index) {
-                    alreadyFlipped = true;
+                    score -= 1
                 } else {
                     alreadyFlippedIndices += [index]
                 }
@@ -65,7 +60,6 @@ class Concentration
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
-        return (alreadyFlipped, match)
     }
     
     /**
