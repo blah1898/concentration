@@ -103,6 +103,7 @@ class Concentration
             cards[index].isMatched = false
         }
         cards = Concentration.shuffle(array: cards)
+        score = 0
     }
     
     init (numberOfPairsOfCards pairCount: Int) {
