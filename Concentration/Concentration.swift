@@ -14,6 +14,7 @@ class Concentration
     var alreadyFlippedIndices = [Int]()
     var score = 0;
     var indexOfOneAndOnlyFaceUpCard : Int? = nil
+    var faceUpCardWasFlippedPreviously : Bool? = nil
     
     /**
     Select a card and flip it
@@ -26,17 +27,24 @@ class Concentration
         if !cards[index].isMatched {
             // Check if we already have one face up card
             if let matchedIndex = indexOfOneAndOnlyFaceUpCard, matchedIndex != index {
-                // Check if we've already flipped this card
+                var scorePenaltyIfMismatched = 0
+                // Check if we've already flipped this card or the previous one
                 if alreadyFlippedIndices.contains(index) {
-                    score -= 1
+                    scorePenaltyIfMismatched += 1
                 } else {
                     alreadyFlippedIndices += [index]
                 }
+                if faceUpCardWasFlippedPreviously != false {
+                    scorePenaltyIfMismatched += 1
+                }
+                
                 // Check for match
                 if cards[matchedIndex].identifier == cards[index].identifier {
                     cards[matchedIndex].isMatched = true
                     cards[index].isMatched = true
                     score += 2
+                } else  {
+                    score -= scorePenaltyIfMismatched
                 }
                 // Turn the selected card faceup. Since we don't have just one card up,
                 // set the index of the only face card up to nil
@@ -45,9 +53,10 @@ class Concentration
             } else if indexOfOneAndOnlyFaceUpCard != index {
                 // Check if we've already flipped this card
                 if alreadyFlippedIndices.contains(index) {
-                    score -= 1
+                    faceUpCardWasFlippedPreviously = true
                 } else {
                     alreadyFlippedIndices += [index]
+                    faceUpCardWasFlippedPreviously = false
                 }
                 
                 // Either 0 or 2 cards are face up, flip everything back down
