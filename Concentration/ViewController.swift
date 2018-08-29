@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet var cardButtons: [UIButton]!
     
     @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     var flipCount = 0 {
         didSet {
