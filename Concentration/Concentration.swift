@@ -107,6 +107,7 @@ class Concentration
             cards[index].isMatched = false
         }
         cards = Concentration.shuffle(array: cards)
+        alreadyFlippedIndices = []
         score = 0
         flips = 0
     }
