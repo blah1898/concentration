@@ -13,6 +13,7 @@ class Concentration
     var cards = [Card]()
     var alreadyFlippedIndices = [Int]()
     var score = 0;
+    var flips = 0;
     var indexOfOneAndOnlyFaceUpCard : Int? = nil
     var faceUpCardWasFlippedPreviously : Bool? = nil
     
@@ -27,6 +28,7 @@ class Concentration
         if !cards[index].isMatched {
             // Check if we already have one face up card
             if let matchedIndex = indexOfOneAndOnlyFaceUpCard, matchedIndex != index {
+                flips += 1
                 var scorePenaltyIfMismatched = 0
                 // Check if we've already flipped this card or the previous one
                 if alreadyFlippedIndices.contains(index) {
@@ -50,7 +52,9 @@ class Concentration
                 // set the index of the only face card up to nil
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
+            // Check if we're actually flipping a card
             } else if indexOfOneAndOnlyFaceUpCard != index {
+                flips += 1
                 // Check if we've already flipped this card
                 if alreadyFlippedIndices.contains(index) {
                     faceUpCardWasFlippedPreviously = true
@@ -104,6 +108,7 @@ class Concentration
         }
         cards = Concentration.shuffle(array: cards)
         score = 0
+        flips = 0
     }
     
     init (numberOfPairsOfCards pairCount: Int) {

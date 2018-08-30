@@ -38,16 +38,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
-    }
-    
     @IBAction func touchCard(_ sender: UIButton) {
         if let index = cardButtons.index(of: sender) {
             game.selectCard(at: index)
-            flipCount += 1
         } else {
             fatalError("Button not found")
         }
@@ -74,8 +67,6 @@ class ViewController: UIViewController {
         selectedEmoji = [Int: String]()
         // Reset the game
         game.reset()
-        // Reset the counter
-        flipCount = 0
         // Update view
         updateViewFromModel()
     }
