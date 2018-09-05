@@ -106,6 +106,7 @@ class Concentration
             cards[index].isFaceUp = false
             cards[index].isMatched = false
         }
+        indexOfOneAndOnlyFaceUpCard = nil
         cards = Concentration.shuffle(array: cards)
         alreadyFlippedIndices = []
         score = 0
